@@ -2,7 +2,7 @@ import React, { PropTypes as T } from 'react';
 import styles from './styles.module.css';
 import classNames from 'classnames';
 
-const Train = ({ id, line, status, canEdit, updateTrains }) => {
+const Train = ({ token, id, line, status, canEdit, updateTrains }) => {
 
   const updateStatus = (event) => {
     const value = event.target.value;
@@ -10,8 +10,9 @@ const Train = ({ id, line, status, canEdit, updateTrains }) => {
 
     fetch(`/api/v1/trains/${trainId}`, {
       method: 'PATCH',
-      body: JSON.stringify({ 
-        train: { status: value }
+      body: JSON.stringify({
+        train: { status: value },
+        token
       }),
       headers: {
         'Content-Type': 'application/json'
